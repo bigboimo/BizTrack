@@ -4,19 +4,30 @@ import { Dashboard } from "./pages/dashboard";
 import { Auth } from "./pages/auth";
 import { FinancialRecordsProvider } from "./contexts/financial-record-context";
 import { SignedIn, UserButton } from "@clerk/clerk-react";
-// import { dark } from "@clerk/themes";
 
+// Main App component
 function App() {
   return (
     <Router>
+      {/* App container */}
       <div className="app-container">
+        {/* Navbar */}
         <div className="navbar">
-          <Link to="/"> Dashboard</Link>
+          {/* Link to navigate to the Auth page */}
+          <Link to="/auth"> Dashboard</Link>
+
+          {/* Display UserButton component when user is signed in */}
           <SignedIn>
             <UserButton />
           </SignedIn>
         </div>
+
+        {/* Define routes */}
         <Routes>
+          {/* Route for the Auth page */}
+          <Route path="/auth" element={<Auth />} />
+
+          {/* Route for the Dashboard page */}
           <Route
             path="/"
             element={
@@ -25,7 +36,6 @@ function App() {
               </FinancialRecordsProvider>
             }
           />
-          <Route path="/auth" element={<Auth />} />
         </Routes>
       </div>
     </Router>
